@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Create server directory
+mkdir minecraft-server && cd minecraft-server
+
+# Download Paper server
+wget https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/416/downloads/paper-1.20.4-416.jar
+
+# Create startup script
+echo '#!/bin/bash
+java -Xmx10G -Xms10G -jar paper-1.20.4-416.jar nogui' > start.sh
+chmod +x start.sh
+
+
+# Accept the Minecraft EULA
+echo "eula=true" > eula.txt
+
+# Modify server.properties to set online-mode to false
+echo "online-mode=false" >> server.properties
+
+# Start the server
+./start.sh
